@@ -1,0 +1,47 @@
+.tareas-table {
+    border-collapse: collapse;
+    width: 100%;
+  }
+  
+  .tareas-table th, .tareas-table td {
+    border: 1px solid #ddd; /* Establece un borde de 1px sólido con color gris */
+    padding: 8px; /* Añade relleno para espaciar el contenido de las celdas */
+    text-align: left; /* Alinea el texto a la izquierda dentro de las celdas */
+  }
+  
+  .tareas-table th {
+    background-color: #f2f2f2; /* Color de fondo para los encabezados */
+  }
+
+  .tareas-form {
+    display: flex;
+    flex-direction: column;
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  .tareas-form input,
+  .tareas-form label,
+  .tareas-form button {
+    margin-bottom: 10px;
+  }
+  
+  .tareas-form button {
+    padding: 10px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .tareas-form button:hover {
+    background-color: #0056b3;
+  }
+  
+  .tareas-form input[type="checkbox"] {
+    margin-right: 5px;
+  }
