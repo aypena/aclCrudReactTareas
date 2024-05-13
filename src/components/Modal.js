@@ -1,17 +1,20 @@
 import React, { useState } from 'react';
-
-function Modal({ tarea, onUpdate }) {
+import { useActualizarTareaMutation } from "./api/apiSlice";
+function Modal({ tarea, onUpdate, onClose }) {
+    
   const [descripcion, setDescripcion] = useState(tarea.descripcion);
   const [fechaCreacion, setFechaCreacion] = useState(tarea.fechaCreacion);
   const [vigente, setVigente] = useState(tarea.vigente);
+  const [actualizarTarea] = useActualizarTareaMutation();
 
-  const handleUpdate = () => {
-    onUpdate({
+  const handleGuardar = () => {
+    actualizarTarea({
       ...tarea,
       descripcion,
       fechaCreacion,
       vigente
     });
+    onClose();
   };
 
   return (
@@ -27,11 +30,11 @@ function Modal({ tarea, onUpdate }) {
         />
         <label htmlFor="fechaCreacion">Fecha de Creación:</label>
         <input
-          type="datetime-local"
-          id="fechaCreacion"
-          value={fechaCreacion}
-          onChange={(e) => setFechaCreacion(e.target.value)}
-        />
+  type="datetime-local"
+  id="fechaCreacion"
+  value={fechaCreacion.slice(0, 16)} // Elimina los milisegundos y el desplazamiento de zona horaria
+  onChange={(e) => setFechaCreacion(e.target.value)}
+/>
         <label htmlFor="vigente">Vigente:</label>
         <input
           type="checkbox"
@@ -39,7 +42,9 @@ function Modal({ tarea, onUpdate }) {
           checked={vigente}
           onChange={(e) => setVigente(e.target.checked)}
         />
-        <button onClick={handleUpdate}>Guardar</button>
+
+        <button onClick={handleGuardar}>Guardar</button>
+        <button onClick={onClose}>Cancelar</button>
       </div>
     </div>
   );
